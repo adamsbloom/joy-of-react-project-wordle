@@ -10,10 +10,15 @@ import GuessResults from '../GuessResults';
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
- 
+
 function Game() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [guesses, setGuesses] = useState(() => range(0, NUM_OF_GUESSES_ALLOWED).map(() => '')));
+  const [guesses, setGuesses] = useState(() =>
+    range(0, NUM_OF_GUESSES_ALLOWED).map(() => '')
+  );
+
+  const gameWon = guesses[currentIndex - 1] === answer;
+  const gameLost = currentIndex === NUM_OF_GUESSES_ALLOWED;
 
   function onGuess(guess) {
     if (currentIndex >= NUM_OF_GUESSES_ALLOWED) {
@@ -38,7 +43,13 @@ function Game() {
   return (
     <>
       <GuessResults guesses={guesses} answer={answer} />
-      <GuessInput onGuess={onGuess} />
+      <GuessInput
+        onGuess={onGuess}
+        gameWon={gameWon}
+        gameLost={gameLost}
+        guessNumber={currentIndex}
+        answer={answer}
+      />
     </>
   );
 }
