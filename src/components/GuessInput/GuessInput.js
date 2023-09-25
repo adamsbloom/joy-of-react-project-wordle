@@ -20,6 +20,7 @@ function GuessInput({ onGuess }) {
       <input
         id="guess-input"
         type="text"
+        maxLength={5}
         pattern="^[A-Z]{5}$"
         value={value}
         onChange={onChange}
