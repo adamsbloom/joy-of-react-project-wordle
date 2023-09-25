@@ -1,4 +1,5 @@
 import React from 'react';
+import { LETTERS_IN_GUESS } from '../../constants';
 
 function GuessInput({ onGuess }) {
   const [value, setValue] = React.useState('');
@@ -20,8 +21,8 @@ function GuessInput({ onGuess }) {
       <input
         id="guess-input"
         type="text"
-        maxLength={5}
-        pattern="^[A-Z]{5}$"
+        maxLength={LETTERS_IN_GUESS}
+        pattern={'^[A-Z]{' + LETTERS_IN_GUESS + '}$'}
         value={value}
         onChange={onChange}
       />
